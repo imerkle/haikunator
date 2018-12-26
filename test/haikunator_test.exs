@@ -1,6 +1,6 @@
 defmodule HaikunatorTest do
   use ExUnit.Case, async: true
-
+  @moduletag timeout: 600000
   """
   test "Returns a name of adjective-noun-token" do
     haiku = Haikunator.build
