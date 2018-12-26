@@ -33,8 +33,8 @@ defmodule HaikunatorTest do
     haiku = Haikunator.build(9999, "")
     assert length(String.split(haiku, ~r/\s/)) == 1
   end
-  test "Create 100000 haiku and test for duplicates" do
-    haikus = 0..100000 |> Enum.map(fn x -> Haikunator.build(0, "", true) end)
+  test "Create 10000 haiku and test for duplicates" do
+    haikus = 0..10000 |> Enum.map(fn _ -> Haikunator.build(0, "", true) end)
     assert length(haikus) == length(haikus |> Enum.uniq())
   end
 
