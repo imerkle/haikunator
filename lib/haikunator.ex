@@ -35,15 +35,26 @@ defmodule Haikunator do
       iex> Haikunator.build(0, "") # => "twilightbreeze"
   """
   @spec build(integer, String.t) :: String.t
-  def build(range \\ 9999, delimiter \\ "-") do
+  def build(range \\ 9999, delimiter \\ "-", capitalize \\ false) do
     :rand.seed(:exsplus)
     token = if range > 0, do: random(range)
 
     [@adjectives, @nouns]
     |> Enum.map(&sample/1)
-    |> Enum.concat(List.wrap(token))
+    #|> Enum.concat(List.wrap(token))
+    |> Enum.map(fn x -> 
+      x = String.replace(x, "-", "")
+      if capitalize do x |> do_capitalize() end || x
+    end)
     |> Enum.join(delimiter)
   end
+
+  @spec do_capitalize(String.t) :: String.t
+  defp do_capitalize(s) when is_binary(s) do
+    s |> String.capitalize()    
+  end
+  @spec do_capitalize(integer) :: integer
+  defp do_capitalize(s), do: s
 
   @spec random(integer) :: integer
   defp random(range) when range > 0, do: :rand.uniform(range)

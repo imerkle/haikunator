@@ -8,7 +8,7 @@ defmodule Haikunator.Mixfile do
      elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps,
+     deps: deps(),
      package: [maintainers: ["Kash Nouroozi"],
                licenses: ["MIT"],
                links: %{"GitHub" => "https://github.com/knrz/Haikunator"}
