@@ -5,7 +5,7 @@ defmodule Haikunator.Mixfile do
     [app: :haikunator,
      description: "Generate Heroku-like memorable random names to use in your apps or anywhere else.",
      version: "1.1.0",
-     elixir: "~> 1.3",
+     elixir: "~> 1.7",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps,
