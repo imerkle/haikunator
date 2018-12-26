@@ -41,9 +41,9 @@ defmodule Haikunator do
 
     [@adjectives, @nouns]
     |> Enum.map(&sample/1)
-    #|> Enum.concat(List.wrap(token))
+    |> Enum.concat(List.wrap(token))
     |> Enum.map(fn x -> 
-      x = String.replace(x, "-", "")
+      x = if is_binary(x) do String.replace(x, "-", "") end || x
       if capitalize do x |> do_capitalize() end || x
     end)
     |> Enum.join(delimiter)

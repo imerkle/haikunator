@@ -1,17 +1,17 @@
 defmodule HaikunatorTest do
   use ExUnit.Case, async: true
-  """
+  
   test "Returns a name of adjective-noun-token" do
     haiku = Haikunator.build
     assert String.match?(haiku, ~r/\A\w+-\w+-\d{1,4}\z/)
   end
-  """
+  
 
   test "No two haikus are alike" do
     assert Haikunator.build != Haikunator.build
   end
 
-  """
+  
   test "Token value is less than n" do
     range = 1000
     haiku = Haikunator.build(range)
@@ -22,7 +22,7 @@ defmodule HaikunatorTest do
     haiku = Haikunator.build(9999, ".")
     assert String.match?(haiku, ~r/\A\w+\.\w+\.\d{1,4}/)
   end
-  """
+  
   
   test "No token if the range is 0" do
     assert parse_token(Haikunator.build(0)) == nil
@@ -32,10 +32,12 @@ defmodule HaikunatorTest do
     haiku = Haikunator.build(9999, "")
     assert length(String.split(haiku, ~r/\s/)) == 1
   end
-  test "Create 100000 haiku and test for duplicates" do
-    haikus = 0..100000 |> Enum.map(fn _ -> Haikunator.build(0, "", true) end)
+  
+  test "Create 1000 haiku and test for duplicates" do
+    haikus = 0..1000 |> Enum.map(fn _ -> Haikunator.build(0, "", true) end)
     assert length(haikus) == length(haikus |> Enum.uniq())
   end
+  
 
   defp parse_token(haiku) do
     match = Regex.scan(~r/[\d]{1,4}/, haiku) |> Enum.at(0)
